@@ -1,4 +1,4 @@
 sudo find3-cli-scanner -i wlan0 \
-    -device rpiNew -family family \
+    -device rpiOld -family family \
     -server http://192.168.1.161:8005 \
-    -scantime 10 -bluetooth -forever -passive &
+    -scantime 10 -wifi -bluetooth -forever -passive &
