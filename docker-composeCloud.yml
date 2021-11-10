@@ -10,7 +10,7 @@ services:
   web:
     image: webserver/rt
     ports: 
-      - "80:80"
+      - "80:8010"
     links:
       - mosquitto:mqtt/rt
       - findweb:schollz/find3
