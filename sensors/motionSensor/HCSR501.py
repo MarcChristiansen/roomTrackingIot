@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 
-class hcsr05Sensor(object):
+class hcsr501Sensor(object):
     def __init__(self, GPIO_PIR):
         self.GPIO_PIR = GPIO_PIR
         GPIO.setup(self.GPIO_PIR, GPIO.IN)
