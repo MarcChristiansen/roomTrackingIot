@@ -20,7 +20,8 @@ services:
   findweb:
     image: schollz/find3
     ports: 
-      - "80:80"
+      - "1884:1884"
+      - "8005:8003"
     links:
       - mosquitto:mqtt/rt
     environment:
