@@ -1,0 +1,35 @@
+version: "3.6"
+services: 
+  
+  mosquitto:
+    image: mqtt/rt
+    ports:
+      - "1883:1883"
+      - "8883:8883"
+
+  web:
+    image: webserver/rt
+    ports: 
+      - "80:80"
+    links:
+      - mosquitto:mqtt/rt
+      - findweb:schollz/find3
+    environment:
+      - "PYTHONUNBUFFERED=1"
+      
+  findweb:
+    image: schollz/find3
+    ports: 
+      - "80:80"
+    links:
+      - mosquitto:mqtt/rt
+    environment:
+      - "PYTHONUNBUFFERED=1"
+      - "MQTT_ADMIN=ADMIN"
+      - "MQTT_PASS=sekret"
+      - "MQTT_SERVER='localhost:1883'"
+      - "MQTT_EXTERNAL='your public IP'"
+      - "MQTT_PORT=1884"
+    volumes:
+        - /home/$USER/FIND_DATA:/data
+
