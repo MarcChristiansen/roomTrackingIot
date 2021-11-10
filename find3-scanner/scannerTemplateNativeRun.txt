@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 sudo find3-cli-scanner -i mon0 -monitor-mode
 
 sudo iw phy `iw dev wlan0 info | gawk '/wiphy/ {printf "phy" $2}'` interface add mon0 type monitor
@@ -19,3 +20,9 @@ http POST http://192.168.1.161:8005/api/v1/settings/passive \
 #To finish each
 http POST http://192.168.1.161:8005/api/v1/settings/passive \
      family=test device=wifi-98:09:CF:8C:1D:52
+=======
+sudo find3-cli-scanner -i wlan0 \
+    -device rpiOld -family family \
+    -server http://192.168.1.161:8005 \
+    -scantime 10 -wifi -bluetooth -forever -passive &
+>>>>>>> dcfc60b9110d13266e9edc902e2f59fe0b4423f7
