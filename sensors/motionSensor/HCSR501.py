@@ -3,6 +3,7 @@ import RPi.GPIO as GPIO
 class hcsr501Sensor(object):
     def __init__(self, GPIO_PIR):
         self.GPIO_PIR = GPIO_PIR
+        GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.GPIO_PIR, GPIO.IN)
 
     def get_motion(self):
