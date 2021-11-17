@@ -27,3 +27,5 @@ if __name__ == "__main__":
     client.connect(mqttBroker, 1883, 60)
     
     client.loop_forever()
+
+    print("Me ded")
