@@ -27,7 +27,7 @@ services:
   findweb:
     image: schollz/find3
     ports: 
-      - "1884:1884"
+      - "1884:1883"
       - "8005:8003"
     links:
       - mosquitto:mqtt/rt
@@ -35,7 +35,7 @@ services:
       - "PYTHONUNBUFFERED=1"
       - "MQTT_ADMIN=client"
       - "MQTT_PASS=sekret"
-      - "MQTT_SERVER='localhost:1884'"
+      - "MQTT_SERVER='localhost:1883'"
       - "MQTT_EXTERNAL='your public IP'"
       - "MQTT_PORT=1884"
     volumes:

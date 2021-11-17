@@ -1,3 +1,4 @@
+from logging import error
 from motionSensor.HCSR501 import hcsr501Sensor
 from distanceSensor.HCSR05 import hcsr05Sensor
 import time
@@ -35,6 +36,7 @@ def handler(_signal_received, _frame):
     hcsr501.cleanup()
     hcsr05.cleanup()
     cloudClient.disconnect()
+    cloudClient.loop_stop()
     exit(0)
 
 
@@ -42,6 +44,8 @@ if __name__ == "__main__":
     signal(SIGINT, handler)
 
     cloudClient = connect_broker("teamspeak.marcs.dk", "motion_and_distance_sensor_" + rpId) #Cloud
+
+    cloudClient.loop_start()
     
     while True:
         motion = hcsr501.get_motion()
