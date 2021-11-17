@@ -1,7 +1,7 @@
 import time
 import paho.mqtt.client as mqtt
 
-topicSensors = "dk/ivy/sensor/*"
+topicSensors = "dk/ivy/sensor/#"
 
 def handler(_signal_received, _frame):
     # Handle any cleanup here
