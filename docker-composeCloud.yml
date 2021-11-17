@@ -11,6 +11,8 @@ services:
     image: ingest/rt
     links:
       - mosquitto:mqtt/rt
+    environment:
+      - "PYTHONUNBUFFERED=1"
 
   web:
     image: webserver/rt
