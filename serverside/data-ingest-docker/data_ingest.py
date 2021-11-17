@@ -15,7 +15,7 @@ def on_connect(client, userdata, flags, rc):
 
 def on_message(client, userdata, message):
     msg = message.payload.decode('UTF-8')
-    print("MQTT: {msg}")
+    print("MQTT: {}", msg)
 
 
 if __name__ == "__main__":
