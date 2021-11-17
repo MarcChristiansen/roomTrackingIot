@@ -26,9 +26,9 @@ services:
       - mosquitto:mqtt/rt
     environment:
       - "PYTHONUNBUFFERED=1"
-      - "MQTT_ADMIN=ADMIN"
+      - "MQTT_ADMIN=client"
       - "MQTT_PASS=sekret"
-      - "MQTT_SERVER='localhost:1883'"
+      - "MQTT_SERVER='localhost:1884'"
       - "MQTT_EXTERNAL='your public IP'"
       - "MQTT_PORT=1884"
     volumes:
