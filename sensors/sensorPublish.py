@@ -22,8 +22,8 @@ def connect_broker(connectionString, clientName):
     client.connect(connectionString, 1883, 60)
     return client
 
-topicMotionCloud    = "dk/ivy/"+ rpId +"/sensor/motion"
-topicDistanceCloud    = "dk/ivy/"+ rpId +"/sensor/distance"
+topicMotionCloud    = "dk/ivy/sensor/"+ rpId +"/motion"
+topicDistanceCloud    = "dk/ivy/sensor/"+ rpId +"/distance"
 
 messageMotion   = {"unit": "bool", "id": rpId, "room": room}
 messageDistance = {"unit": "cm", "id": rpId, "room": room}
