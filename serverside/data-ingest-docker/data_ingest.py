@@ -19,7 +19,7 @@ def on_message(client, userdata, message):
 
 
 if __name__ == "__main__":
-    mqttBroker = "teamspeak.marcs.dk"
+    mqttBroker = "mosquitto"
     client = mqtt.Client("ingest_handler" )
     client.username_pw_set("client", "sekret")
     client.on_connect = on_connect

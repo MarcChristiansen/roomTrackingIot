@@ -7,6 +7,11 @@ services:
       - "1883:1883"
       - "8883:8883"
 
+  ingest:
+    image: ingest/rt
+    links:
+      - mosquitto:mqtt/rt
+
   web:
     image: webserver/rt
     ports: 
