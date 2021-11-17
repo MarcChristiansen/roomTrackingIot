@@ -7,6 +7,13 @@ services:
       - "1883:1883"
       - "8883:8883"
 
+  ingest:
+    image: ingest/rt
+    links:
+      - mosquitto:mqtt/rt
+    environment:
+      - "PYTHONUNBUFFERED=1"
+
   web:
     image: webserver/rt
     ports: 
