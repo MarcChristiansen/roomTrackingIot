@@ -1,3 +1,5 @@
+runSensors.sh
+
 *.db
 
 # Byte-compiled / optimized / DLL files
