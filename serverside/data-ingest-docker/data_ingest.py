@@ -1,5 +1,9 @@
+import sqlite3
 import time
 import paho.mqtt.client as mqtt
+import database.dbClient
+import database.sqliteSetup
+
 
 topicSensors = "dk/ivy/sensor/#"
 
@@ -19,6 +23,7 @@ def on_message(client, userdata, message):
 
 
 if __name__ == "__main__":
+    database.sqliteSetup.setupDB("dbdata/roomdb")
     mqttBroker = "mosquitto"
     client = mqtt.Client("ingest_handler" )
     client.username_pw_set("client", "sekret")
