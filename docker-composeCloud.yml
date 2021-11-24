@@ -1,11 +1,20 @@
-version: "3.6"
+version: "3.8"
+    
 services: 
-  
   mosquitto:
     image: mqtt/rt
     ports:
       - "1883:1883"
       - "8883:8883"
+
+  ingest:
+    image: ingest/rt
+    links:
+      - mosquitto:mqtt/rt
+    environment:
+      - "PYTHONUNBUFFERED=1"
+    volumes:
+      - '/home/iot/roomDBdata:/app/dbdata'
 
   web:
     image: webserver/rt
@@ -13,24 +22,24 @@ services:
       - "80:8010"
     links:
       - mosquitto:mqtt/rt
-      - findweb:schollz/find3
     environment:
       - "PYTHONUNBUFFERED=1"
-      
-  findweb:
-    image: schollz/find3
-    ports: 
-      - "1884:1884"
-      - "8005:8003"
-    links:
-      - mosquitto:mqtt/rt
-    environment:
-      - "PYTHONUNBUFFERED=1"
-      - "MQTT_ADMIN=ADMIN"
-      - "MQTT_PASS=sekret"
-      - "MQTT_SERVER='localhost:1883'"
-      - "MQTT_EXTERNAL='your public IP'"
-      - "MQTT_PORT=1884"
     volumes:
-        - /home/$USER/FIND_DATA:/data
-
+      - '/home/iot/roomDBdata:/app/dbdata'
+      
+#  findweb:
+#    image: schollz/find3
+#    ports: 
+#      - "1884:1883"
+#      - "8005:8003"
+#    links:
+#      - mosquitto:mqtt/rt
+#    environment:
+#      - "PYTHONUNBUFFERED=1"
+#      - "MQTT_ADMIN=client"
+#      - "MQTT_PASS=sekret"
+#      - "MQTT_SERVER='192.168.1.161:1883'"
+#      - "MQTT_EXTERNAL='0.0.0.0'"
+#      - "MQTT_PORT=1883"
+#    volumes:
+#      - '/home/iot/FIND_DATA:/data'
