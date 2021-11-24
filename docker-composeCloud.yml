@@ -1,8 +1,4 @@
-version: "3.6"
-
-networks:
-  find3-network:
-    driver: bridge
+version: "3.8"
     
 services: 
   mosquitto:
@@ -24,25 +20,22 @@ services:
       - "80:8010"
     links:
       - mosquitto:mqtt/rt
-      - findweb:schollz/find3
     environment:
       - "PYTHONUNBUFFERED=1"
       
-  findweb:
-    image: schollz/find3
-    ports: 
-      - "1884:1883"
-      - "8005:8003"
-    links:
-      - mosquitto:mqtt/rt
-    environment:
-      - "PYTHONUNBUFFERED=1"
-      - "MQTT_ADMIN=client"
-      - "MQTT_PASS=sekret"
-      - "MQTT_SERVER='localhost:1883'"
-      - "MQTT_EXTERNAL='0.0.0.0'"
-      - "MQTT_PORT=1884"
-    volumes:
-      - '/home/iot/FIND_DATA:/data'
-	networks:
-      - find3-network
+#  findweb:
+#    image: schollz/find3
+#    ports: 
+#      - "1884:1883"
+#      - "8005:8003"
+#    links:
+#      - mosquitto:mqtt/rt
+#    environment:
+#      - "PYTHONUNBUFFERED=1"
+#      - "MQTT_ADMIN=client"
+#      - "MQTT_PASS=sekret"
+#      - "MQTT_SERVER='192.168.1.161:1883'"
+#      - "MQTT_EXTERNAL='0.0.0.0'"
+#      - "MQTT_PORT=1883"
+#    volumes:
+#      - '/home/iot/FIND_DATA:/data'
