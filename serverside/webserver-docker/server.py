@@ -1,8 +1,14 @@
 from flask import Flask
 from flask import render_template
 from flask import request
+from database.dbClient import dbClient
 
 app = Flask(__name__)
+
+def getOccupancyHistory(room):
+    dbclient = dbClient("dbdata/roomdb.db") #If error change to "file:dbdata/roomdb.db"
+    data = dbclient.get_room_history(room)
+    dbclient.cleanup()
 
 @app.route("/")
 def index():
