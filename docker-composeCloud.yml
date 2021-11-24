@@ -13,6 +13,8 @@ services:
       - mosquitto:mqtt/rt
     environment:
       - "PYTHONUNBUFFERED=1"
+    volumes:
+      - '/home/iot/roomDBdata:/app/dbdata'
 
   web:
     image: webserver/rt
@@ -22,6 +24,8 @@ services:
       - mosquitto:mqtt/rt
     environment:
       - "PYTHONUNBUFFERED=1"
+    volumes:
+      - '/home/iot/roomDBdata:/app/dbdata'
       
 #  findweb:
 #    image: schollz/find3
