@@ -14,25 +14,25 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">RT</a>
+            <a class="navbar-brand" href="../">RT</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto gap-5">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        <a class="nav-link" aria-current="page" href="../">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/live">Live Map</a>
+                        <a class="nav-link" href="../live">Live Map</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle active" href="" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Rooms
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="/rooms/living">Living Room</a></li>
-                            <li><a class="dropdown-item" href="/rooms/toilet">Toilet</a></li>
+                            <li><a class="dropdown-item active" href="../rooms/living">Living Room</a></li>
+                            <li><a class="dropdown-item" href="../rooms/toilet">Toilet</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -62,29 +62,18 @@
         </div>
     </div>
     <hr class="divider">
-    <div class="container">
-        <div class="row">
-            <div class="d-grid col-4 mx-auto text-center">
-                <h1>Toilet: Active</h1>
-            </div>
-        </div>
-        <div class="row justify-content-center text-center gy-3 mt-1">
-            <div class="col-md">
-                <h4>Wifi-beacon:</h4>
-                <h4 class="text-success">Motion Detected</h4>
-            </div>
-            <div class="col-md">
-                <h4>Motion Sensor:</h4>
-                <h4 class="text-danger">No Motion</h4>
-            </div>
-            <div class="col-md">
-                <h4>Distance Sensor:</h4>
-                <h4 class="text-danger">No Motion</h4>
+    <div class="col p-3 min-vh-60">
+        <div id="container">
+            <h1 class="text-center">Histogram</h1>
+            <div>
+                <canvas id="barChart" width="300" height="95"></canvas>
             </div>
         </div>
     </div>
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-  </body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js" integrity="sha256-7lWo7cjrrponRJcS6bc8isfsPDwSKoaYfGIHgSheQkk=" crossorigin="anonymous"></script>
+    <script src="../static/js/barchart.js"></script>
+</body>
 </html>
