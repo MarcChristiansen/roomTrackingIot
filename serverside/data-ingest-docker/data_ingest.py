@@ -23,7 +23,7 @@ def on_message(client, userdata, message):
 
 
 if __name__ == "__main__":
-    database.sqliteSetup.setupDB("dbdata/roomdb")
+    database.sqliteSetup.setupDB("dbdata/roomdb.db")
     mqttBroker = "mosquitto"
     client = mqtt.Client("ingest_handler" )
     client.username_pw_set("client", "sekret")
