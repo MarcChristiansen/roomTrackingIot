@@ -1,6 +1,10 @@
 version: "3.6"
+
+networks:
+  find3-network:
+    driver: bridge
+    
 services: 
-  
   mosquitto:
     image: mqtt/rt
     ports:
@@ -36,8 +40,9 @@ services:
       - "MQTT_ADMIN=client"
       - "MQTT_PASS=sekret"
       - "MQTT_SERVER='localhost:1883'"
-      - "MQTT_EXTERNAL='your public IP'"
+      - "MQTT_EXTERNAL='0.0.0.0'"
       - "MQTT_PORT=1884"
     volumes:
-        - /home/$USER/FIND_DATA:/data
-
+      - '/home/iot/FIND_DATA:/data'
+	networks:
+      - find3-network
