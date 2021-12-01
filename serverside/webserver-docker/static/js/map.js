@@ -1,6 +1,6 @@
 const container = document.querySelector("#canvasContainer");
 const nav = document.querySelector("#nav");
-const canvas = document.querySelector("#live");
+const canvas = document.querySelector("#map");
 const ctx = canvas.getContext("2d");
 
 function scaleCanvas(){
@@ -56,26 +56,11 @@ function drawRoomOutline(){
     drawScaledLine(500, 750, 500, 950, 10);
 }
 
-function livingActive(){
-    drawScaledRect(50, 50, 900, 500, "green");
-    drawScaledRect(500, 500, 450, 450, "green");
+function drawLiving(colour){
+    drawScaledRect(50, 50, 900, 500, colour);
+    drawScaledRect(500, 500, 450, 450, colour);
 }
 
-function toiletActive(){
-    drawScaledRect(50, 550, 450, 400, "green");
+function drawToilet(colour){
+    drawScaledRect(50, 550, 450, 400, colour);
 }
-
-function loop(){
-    scaleCanvas();
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    //livingActive();
-    //toiletActive();
-    drawRoomOutline();
-    drawScaledText(370, 350, 50, "Living Room");
-    drawScaledText(220, 760, 50, "Toilet");
-
-    window.requestAnimationFrame(loop);
-}
-
-window.requestAnimationFrame(loop);

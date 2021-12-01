@@ -5,15 +5,11 @@ class dbClient(object):
         self.con = sqlite3.connect(dbname)
         self.cur = self.con.cursor()
 
-    def get_data(self, table):
-        return self.cur.execute("SELECT * FROM " + table)
-    
-    def add_entry(self, id, sensor, timestamp, unit, value):
-        self.cur.execute("INSERT INTO {} VALUES ('{}' , {} , '{}' , {})".format(id, sensor, int(timestamp), unit, value))
-        self.con.commit()
+    def get_room_history(self, room):
+        return self.cur.execute("SELECT * FROM occupancy WHERE location=" + room)    
 
-    def get_unique_ids(self):
-        return self.cur.execute("SELECT DISTINCT id FROM temperature")        
+    def get_occupancy(self):
+        return self.cur.execute("SELECT * FROM occupancy")
 
     def cleanup(self):
         self.con.close()
