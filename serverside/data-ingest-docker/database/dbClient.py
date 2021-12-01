@@ -28,7 +28,7 @@ class dbClient(object):
 
     def add_ocupancy(self, timestamp, location, occupied):
         with self.lock:
-            self.cur.execute("INSERT INTO ocupancy VALUES ({}, '{}', {})".format(int(timestamp), location, occupied))
+            self.cur.execute("INSERT INTO occupancy VALUES ({}, '{}', {})".format(int(timestamp), location, occupied))
             self.con.commit()
 
     def cleanup(self):

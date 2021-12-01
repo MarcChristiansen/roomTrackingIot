@@ -1,13 +1,13 @@
-const livingRatio = 0;
-const toiletRatio = 0;
+let livingRatio = 0;
+let toiletRatio = 0;
 
 function getColour(value){
     var hue = ((1 - value) * 120).toString(10);
     return ["hsl(",hue,",100%,50%)"].join("");
 }
 
-livingColour = getColour(livingRatio);
-toiletColour = getColour(toiletRatio);
+livingColour = "green";
+toiletColour = "green";
 
 function loop(){
     scaleCanvas();
@@ -15,8 +15,8 @@ function loop(){
     drawLiving(livingColour);
     drawToilet(toiletColour);
     drawRoomOutline();
-    drawScaledText(320, 350, 50, "Living Room " + (livingRatio * 100) + "%");
-    drawScaledText(170, 760, 50, "Toilet " + (toiletRatio * 100) + "%");
+    drawScaledText(320, 350, 50, "Living Room " + (livingRatio * 100).toFixed(1) + "%");
+    drawScaledText(170, 760, 50, "Toilet " + (toiletRatio * 100).toFixed(1) + "%");
 
     window.requestAnimationFrame(loop);
 }
@@ -31,6 +31,9 @@ fetch(window.location.href, {
 .then(dataObject => {
     livingRatio = dataObject["livingRatio"];
     toiletRatio = dataObject["toiletRatio"];
+
+    livingColour = getColour(livingRatio);
+    toiletColour = getColour(toiletRatio);
 
     window.requestAnimationFrame(loop);
 })

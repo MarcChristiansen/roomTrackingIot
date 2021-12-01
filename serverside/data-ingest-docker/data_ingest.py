@@ -41,8 +41,6 @@ def on_connect_find3(client, userdata, flags, rc):
     client.subscribe(topicFind3)
 
 def occupyRoomWithTimeout(currentOccupancy, occupancyTimeout, dictLock, dbclient, client, room, timeout):
-    if(currentOccupancy.get(room) == None or currentOccupancy[room] == False):
-        dbclient.add_ocupancy(time.time(), room, 1)
     with dictLock:
         currentOccupancy[room] = True
         occupancyTimeout[room] = time.time() + timeout
@@ -85,12 +83,13 @@ def occupancyTimeoutCheck(currentOccupancy, occupancyTimeout, dictLock, client, 
         print("Timeout check: Current occupancy", currentOccupancy)
         with dictLock:
             for room, occupied in currentOccupancy.items():
+                dbclient.add_ocupancy(time.time(), room, int(occupied == True))
                 if occupied and occupancyTimeout[room] < time.time():
                     currentOccupancy[room] = False
-                    dbclient.add_ocupancy(time.time(), room, 0)
+
                     ndict = {"room": room, "occupied":False}
                     client.publish((baseTopicOccupancy + room), json.dumps(ndict), retain=True)
-                    print("Room {} is now empty as timeout ran out...")
+                    print(f"Room {room} is now empty as timeout ran out...")
             
 
 

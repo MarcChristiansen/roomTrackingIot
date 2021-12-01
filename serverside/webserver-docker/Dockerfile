@@ -10,6 +10,6 @@ ADD templates /app/templates
 ADD requirements.txt /app/
 RUN pip3 install -r requirements.txt
 
-EXPOSE 80
+EXPOSE 8010
 
 CMD [ "python3", "server.py" ]

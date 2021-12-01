@@ -3,6 +3,8 @@ from flask import render_template
 from flask import request
 from flask_mqtt import Mqtt
 from database.dbClient import dbClient
+import json
+import math
 
 app = Flask(__name__)
 app.config["MQTT_BROKER_URL"] = "mosquitto"
@@ -38,12 +40,19 @@ def handle_message(client, userdata, message):
 def getRoomHeat(room):
     dbclient = dbClient("dbdata/roomdb.db") #If error change to "file:dbdata/roomdb.db"
     data = dbclient.get_room_heat(room)
+
+    occupiedData = data.fetchone()
+    occupiedCount = occupiedData[1] if occupiedData is not None else 0
+
+    notOccupiedData = data.fetchone()
+    notOccupiedCount = notOccupiedData[1] if notOccupiedData is not None else 0
+
     dbclient.cleanup()
 
-    notOccupiedCount = data[0][1]
-    occupiedCount = data[1][1]
-
     totalCount = notOccupiedCount + occupiedCount
+
+    if totalCount == 0:
+        return 0
 
     return occupiedCount / totalCount
 
@@ -56,13 +65,9 @@ def getHeatData():
 def getOccupancyHistory(room):
     dbclient = dbClient("dbdata/roomdb.db") #If error change to "file:dbdata/roomdb.db"
     data = dbclient.get_room_history(room)
-    dbclient.cleanup()
 
     countArray = [0] * 24
     occupiedArray = [0] * 24
-
-    startTime = data[0][0]
-    endTime = data[-1][0]
 
     for row in data:
         timestamp = row[0]
@@ -70,12 +75,14 @@ def getOccupancyHistory(room):
 
         dayNorm = timestamp % 86400
 
-        hour = floor(dayNorm / 3600)
+        hour = math.floor(dayNorm / 3600)
         
         countArray[hour] += 1
 
         if occupied:
             occupiedArray[hour] += 1
+
+    dbclient.cleanup()
 
     histoArray = [0] * 24
 
@@ -152,7 +159,7 @@ def toilet():
     return render_template("toilet.html")
 
 def runServer():
-    app.run(debug = True, host="0.0.0.0", port=80)
+    app.run(debug = True, host="0.0.0.0", port=8010)
 
 if __name__ == "__main__":
     runServer()
