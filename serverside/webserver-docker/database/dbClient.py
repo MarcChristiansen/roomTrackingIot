@@ -8,5 +8,7 @@ class dbClient(object):
     def get_room_history(self, room):
         return self.cur.execute("SELECT * FROM occupancy WHERE location=" + room)    
 
+
+    
     def cleanup(self):
         self.con.close()

@@ -12,11 +12,11 @@ def getOccupancyHistory(room):
 
 @app.route("/")
 def index():
-    return render_template("index.html")
-
-@app.route("/live")
-def live():
     return render_template("live.html")
+
+@app.route("/heat")
+def live():
+    return render_template("heat.html")
 
 @app.route("/rooms/living")
 def living():
