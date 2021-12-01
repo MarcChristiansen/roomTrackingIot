@@ -19,7 +19,7 @@ services:
   web:
     image: webserver/rt
     ports: 
-      - "80:8010"
+      - "8010:8010"
     links:
       - mosquitto:mqtt/rt
     environment:
