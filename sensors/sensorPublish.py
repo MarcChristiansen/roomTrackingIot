@@ -51,7 +51,6 @@ if __name__ == "__main__":
         motion = hcsr501.get_motion()
         distance = hcsr05.get_distance()
 
-
         messageDistance["timestamp"] = messageMotion["timestamp"] = int(time.time())
 
         messageMotion["value"] = motion
