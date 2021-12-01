@@ -8,8 +8,8 @@ class dbClient(object):
     def get_room_history(self, room):
         return self.cur.execute("SELECT * FROM occupancy WHERE location=" + room)    
 
-    def get_occupancy(self):
-        return self.cur.execute("SELECT * FROM occupancy")
+    def get_room_heat(self, room):
+        return self.cur.execute("SELECT occupied, COUNT(*) AS count FROM occupancy WHERE location=" + room + " GROUP BY occupied ORDER BY occupied DESC")
 
     def cleanup(self):
         self.con.close()

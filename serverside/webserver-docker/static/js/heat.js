@@ -1,6 +1,5 @@
-const livingRatio = document.querySelector("#living").innerHTML;
-const toiletRatio = document.querySelector("#toilet").innerHTML;
-
+const livingRatio = 0;
+const toiletRatio = 0;
 
 function getColour(value){
     var hue = ((1 - value) * 120).toString(10);
@@ -22,4 +21,17 @@ function loop(){
     window.requestAnimationFrame(loop);
 }
 
-window.requestAnimationFrame(loop);
+fetch(window.location.href, {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json"
+    }
+})
+.then(response => response.json())
+.then(dataObject => {
+    livingRatio = dataObject["livingRatio"];
+    toiletRatio = dataObject["toiletRatio"];
+
+    window.requestAnimationFrame(loop);
+})
+
