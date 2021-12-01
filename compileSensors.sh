@@ -1,1 +1,1 @@
-docker build -t dockerSensors sensors/
+docker build -t docker_sensors sensors/
