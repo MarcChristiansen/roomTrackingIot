@@ -112,7 +112,7 @@ if __name__ == "__main__":
     
     client.loop_start()
 
-    mqttBroker_find3 = "192.168.1.161"
+    mqttBroker_find3 = "192.168.1.161" #Docker compose gave issues and didn't work
     find3_client = mqtt.Client("ingest_handler_find3" )
     find3_client.username_pw_set("client", "sekret")
     find3_client.on_connect = on_connect_find3
