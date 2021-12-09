@@ -10,6 +10,7 @@ RPI W patched with nexmon, docker, and find3 scanners.
 
 - Nexmon: https://github.com/seemoo-lab/nexmon
 - Find3 scanner: https://www.internalpositioning.com/doc/cli-scanner.md
+- Some sort of linux server with docker
 
 ## Running sensors on RPI 3/4
 use the following to compile:
