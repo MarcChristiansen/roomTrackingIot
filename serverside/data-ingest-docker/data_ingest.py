@@ -64,8 +64,7 @@ def on_message(currentOccupancy, occupancyTimeout, dictLock, dbclient, client, u
 
         if(message.topic.endswith("distance")):
             dbc.add_distance(dataObject["timestamp"], dataObject["id"], dataObject["room"], dataObject["unit"], dataObject["value"])
-            pass # TODO handle distance
-    #print("MQTT: {}", msg)
+            #For now store distance as none of the methods tried yielded good results.
 
 def on_message_find3(currentOccupancy, occupancyTimeout, dictLock, find3DeviceSet, dbclient, standard_client, find3_client, userdata, message):
     msgStr = message.payload.decode('UTF-8')
