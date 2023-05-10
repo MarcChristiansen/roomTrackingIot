@@ -2,7 +2,7 @@
 This system is designed to monitor occupancy using a variety of sensors including motion, distance and Find3
 
 # Setup overview
-Setup requires quite a few things in terms of hardware. If an example is required it is recommended to look at the demonstration on: http://iot.marcs.dk:8010
+Setup requires quite a few things in terms of hardware.
 
 Requirements
 RPI 3/4 patched with nexmon, docker, and find3 scanners.
